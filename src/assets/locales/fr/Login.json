@@ -1,0 +1,12 @@
+{
+    "login": {
+        "signIn": "Connexion",
+        "signInAction": "Se connecter",
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "rememberMe": "Se souvenir de moi"
+    },
+    "loading": {
+        "loadingNotes": "Chargement des notes"
+    }
+}

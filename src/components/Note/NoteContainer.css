@@ -1,0 +1,70 @@
+.note-column-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    padding: calc(var(--global-app-margin)/2);
+
+    justify-content: center;
+}
+
+.note-container {
+    display: flex;
+    width: calc(100%/var(--n-columns));
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.note-container .note {
+    --note-side-padding: 6px;
+    --note-max-height: 600px;
+    max-height: var(--note-max-height);
+
+    width: calc(100% - var(--global-app-margin)/var(--n-columns));
+}
+
+.note-container .note .markdown-editor-content {
+    max-height: calc(var(--note-max-height) - 0.8em);
+}
+
+@media screen and (max-width: 700px) {
+
+    .note-container,
+    .note-container .note {
+        --n-columns: 1;
+    }
+}
+
+
+
+@media screen and (min-width: 701px) and (max-width: 1000px) {
+
+    .note-container,
+    .note-container .note {
+        --n-columns: 2;
+    }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1500px) {
+
+    .note-container,
+    .note-container .note {
+        --n-columns: 3;
+    }
+}
+
+@media screen and (min-width: 1501px) and (max-width: 2000px) {
+
+    .note-container,
+    .note-container .note {
+        --n-columns: 4;
+    }
+}
+
+@media screen and (min-width: 2001px) {
+
+    .note-container,
+    .note-container .note {
+        --n-columns: 5;
+    }
+}

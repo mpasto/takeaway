@@ -1,0 +1,30 @@
+.new-note-popup-container {
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    /*just below AppBar*/
+    z-index: 9;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.new-note-popup-container .note {
+    width: calc(100% - 2*var(--global-app-margin));
+
+    /*might change depending on screen size*/
+    max-width: 700px;
+
+    max-height: calc(100% - var(--global-app-bar-margin) - 10px);
+
+    margin-top: var(--global-app-bar-margin);
+}

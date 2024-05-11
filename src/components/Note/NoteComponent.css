@@ -1,0 +1,107 @@
+/*.markdown-editor-content *:not(a *) {
+    color: var(--text-color);
+}*/
+
+.note-column-wrapper {
+    margin-top: var(--global-app-bar-margin);
+}
+
+
+.note {
+    /*border: var(--text-color) 1px solid;*/
+    background-color: var(--bg-secondary-color);
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    margin: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.markdown-editor-content {
+    text-align: left;
+}
+
+.note-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.note-header .MuiCardHeader-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.note-title-input {
+    color: var(--text-color);
+    /*background-color: var(--bg-third-color);*/
+    background-color: transparent;
+    margin: 0;
+    padding: 5px 0;
+    font-family: "Fira Sans";
+    font-weight: bold;
+    position: relative;
+    flex-grow: 1;
+}
+
+.MuiCardHeader-title>.note-delete-button {
+    margin-left: 5px;
+}
+
+
+
+h2 {
+    font-weight: 800;
+}
+
+.markdown-editor {
+    flex-grow: 1;
+    overflow-y: hidden;
+}
+
+.markdown-editor-content {
+    font-family: 'Crimson Text';
+    overflow: scroll;
+}
+
+.note-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 0.8em;
+
+    bottom: 0;
+
+    padding: 5px;
+
+}
+
+.note-update-info {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.note-update-progress-icon-container {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.note-update-progress-icon-container {
+    height: 24px;
+    width: 24px;
+}
+
+.note-categories-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.note-categories-container>div {
+    margin-left: 5px;
+}

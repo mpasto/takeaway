@@ -1,0 +1,12 @@
+{
+    "login": {
+        "signIn": "Sign In",
+        "signInAction": "Sign In",
+        "username": "Username",
+        "password": "Password",
+        "rememberMe": "Remember me"
+    },
+    "loading": {
+        "loadingNotes": "Loading notes"
+    }
+}
