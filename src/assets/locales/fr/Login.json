@@ -4,7 +4,13 @@
         "signInAction": "Se connecter",
         "username": "Nom d'utilisateur",
         "password": "Mot de passe",
-        "rememberMe": "Se souvenir de moi"
+        "rememberMe": "Se souvenir de moi",
+        "submit": "Valider",
+        "selectDifferentInstance": "Choisir une autre instance.",
+        "changeCALDAVInstanceURL": "Changer l'URL de l'instance CALDAV",
+        "currentInstanceIs": "Connexion sur l'instance <1>{{instance}}</1>.",
+        "currentInstanceIs2": "Connexion sur l'instance {{instance}}.",
+        "instanceURL": "URL de l'instance"
     },
     "loading": {
         "loadingNotes": "Chargement des notes"

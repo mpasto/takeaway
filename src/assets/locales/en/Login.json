@@ -4,7 +4,13 @@
         "signInAction": "Sign In",
         "username": "Username",
         "password": "Password",
-        "rememberMe": "Remember me"
+        "rememberMe": "Remember me",
+        "submit": "Submit",
+        "selectDifferentInstance": "Select a different instance.",
+        "changeCALDAVInstanceURL": "Change CALDAV instance URL",
+        "currentInstanceIs": "Current instance is <1>{{instance}}</1>.",
+        "currentInstanceIs2": "Current instance is {{instance}}.",
+        "instanceURL": "Instance URL"
     },
     "loading": {
         "loadingNotes": "Loading notes"

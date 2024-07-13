@@ -11,14 +11,18 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import i18next from "../../classes/locale";
+import { Trans } from 'react-i18next';
 
 
 type SignInProps = {
-    handleSignIn: (username: string, password: string, /*rememberMe?: boolean*/) => void,
+    instanceURL: string,
+    handleSignIn: (username: string, password: string) => void,
+    selectNewInstance: () => void,
 }
 
 export default function SignIn(props: SignInProps) {
     const handleSignIn = props.handleSignIn;
+    const instanceURL = props.instanceURL;
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -27,7 +31,7 @@ export default function SignIn(props: SignInProps) {
         const password = data.get('password')?.toString();
 
         if ((typeof username !== "undefined") && (typeof password !== "undefined")) {
-            handleSignIn(username, password,);
+            handleSignIn(username, password);
         }
     };
 
@@ -81,6 +85,11 @@ export default function SignIn(props: SignInProps) {
                     >
                         {i18next.t("login.signInAction")}
                     </Button>
+
+                    <p className='select-instance-url-paragraph'>
+                        <Trans i18nKey="login.currentInstanceIs" instance={instanceURL}> Current instance is <Link href={instanceURL}>{{ instance: instanceURL }}</Link>. </Trans>
+                        <Link className='select-instance-url-link' onClick={props.selectNewInstance}>{i18next.t("login.selectDifferentInstance")}</Link>
+                    </p>
                 </Box>
             </Box>
         </Container>
