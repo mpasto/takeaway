@@ -1,0 +1,15 @@
+services:
+    frontend:
+        container_name: frontend
+        user: node
+        build:
+            context: .
+            dockerfile: Dockerfile
+            #target: dev
+        command: pnpm run dev
+        environment:
+            - VITE_PORT=${VITE_PORT}
+        ports:
+            - ${VITE_PORT}:${VITE_PORT}
+        volumes:
+            - ${PWD}/:/home/node/app
