@@ -10,8 +10,11 @@ import SearchAppBar from './components/Header/AppBar'
 import { DrawerHandle, DrawerMenu } from './components/Header/Drawer'
 import LoadingPage from './components/Login/LoadingPage'
 import NewNotePopup, { NewNotePopupHandle } from './components/Note/NewNotePopup'
+import SelectInstanceComponent from './components/Login/SelectInstancePage'
 
 const APP_TITLE = "Takeaway";
+const DEFAULT_INSTANCE_URL = "https://example.com/";
+const INSTANCE_URL_LOCAL_STORAGE_KEY = "instanceURL";
 
 
 type Credentials = {
@@ -22,7 +25,8 @@ type Credentials = {
 
 function BasicApp() {
 
-  //const localCredsStr = localStorage.getItem("credentials");
+  const localInstanceURL = localStorage.getItem(INSTANCE_URL_LOCAL_STORAGE_KEY);
+  const [instanceURL, setInstanceURL] = useState<string | undefined>(undefined);
   const [credentials, setCredentials] = useState<Credentials | undefined>(undefined);
   const [client, setClient] = useState<Client | undefined>(undefined);
   const [calendars, setCalendars] = useState<Calendar[] | undefined>(undefined);
@@ -37,11 +41,18 @@ function BasicApp() {
     setJournals(await calendar.getJournals());
   };
 
+  useEffect(() => {
+    console.log("Set default instance url");
+    setInstanceURL(localInstanceURL ?? DEFAULT_INSTANCE_URL);
+  }, [localInstanceURL])
+
 
 
   useEffect(() => {
-    async function fetchData(creds: Credentials) {
-      const client = new Client(creds.username, creds.password);
+    //Check if an instance URL is stored
+
+    async function fetchData(creds: Credentials, serverURL: string) {
+      const client = new Client(creds.username, creds.password, serverURL);
       await client.buildClient();
       setClient(client);
 
@@ -53,14 +64,20 @@ function BasicApp() {
       setNotes(await calendars[0].getNotes());
       setJournals(await calendars[0].getJournals());
     }
-    if (typeof credentials !== "undefined") {
-      fetchData(credentials);
+    if (typeof credentials !== "undefined" && typeof instanceURL !== "undefined") {
+      fetchData(credentials, instanceURL);
     }
-  }, [credentials]);
+  }, [credentials, instanceURL]);
 
   const handleSignIn = (username: string, password: string) => {
     const creds = { username: username, password: password };
     setCredentials(creds);
+  }
+
+  const handleSelectNewInstance = (url: string) => {
+    console.log("Selectin new instance", url);
+    localStorage.setItem(INSTANCE_URL_LOCAL_STORAGE_KEY, url);
+    setInstanceURL(url);
   }
 
   const drawerRef = useRef<DrawerHandle>();
@@ -71,6 +88,11 @@ function BasicApp() {
   };
 
   const newNotePopupRef = useRef<NewNotePopupHandle>();
+
+  const selectNewInstance = () => {
+    console.log("exec select new instance")
+    setInstanceURL(undefined);
+  };
 
 
   const addNewNote = async () => {
@@ -101,9 +123,13 @@ function BasicApp() {
     }
   };
 
-  if (typeof credentials === "undefined") {
+  if (typeof instanceURL === "undefined") {
     return <>
-      <LoginPage handleSignIn={handleSignIn} />
+      <SelectInstanceComponent handleSelectNewInstance={handleSelectNewInstance} />
+    </>;
+  } else if (typeof credentials === "undefined") {
+    return <>
+      <LoginPage instanceURL={instanceURL} handleSignIn={handleSignIn} selectNewInstance={selectNewInstance} />
     </>;
   } else if (typeof calendars === "undefined") {
     return <LoadingPage />;

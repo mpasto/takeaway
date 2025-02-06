@@ -15,11 +15,11 @@ type UpdateResponse = {
 };
 
 
-async function makeClient(username: string, password: string): Promise<DAVClient> {
-    const url = "https://example.com/";
+
+async function makeClient(username: string, password: string, serverUrl: string): Promise<DAVClient> {
 
     const client = await tsdav.createDAVClient({
-        serverUrl: url,
+        serverUrl: serverUrl,
         credentials: {
             username: username,
             password: password
@@ -188,13 +188,16 @@ class Client {
     username: string;
     password: string;
     client: DAVClient | undefined = undefined;
-    constructor(username: string, password: string) {
+    serverURL: string;
+
+    constructor(username: string, password: string, serverURL: string) {
         this.username = username;
         this.password = password;
+        this.serverURL = serverURL;
     }
 
     async buildClient() {
-        this.client = await makeClient(this.username, this.password);
+        this.client = await makeClient(this.username, this.password, this.serverURL);
     }
 
     awaitClientAndApply = async <T extends (...args: any[]) => any>(f: T, ...args: Parameters<T>): Promise<ReturnType<T>> => {

@@ -1,0 +1,11 @@
+services:
+    frontend:
+        container_name: takeway
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - VITE_PORT=${VITE_PORT}
+        ports:
+            - ${VITE_PORT}:${VITE_PORT}
+        command: yarn dev
